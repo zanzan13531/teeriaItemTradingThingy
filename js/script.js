@@ -6,7 +6,7 @@ function insertViewListings(element) {
     });
     var table = document.createElement("table");
     table.classList.add("listings");
-    table.innerHTML = '<thead><tr><th>Username</th><th>Item</th><th>Stack</th></tr></thead><tbody></tbody>';
+    table.innerHTML = '<thead><tr><th>Username</th><th>Item</th><th>Stack</th><th>Price</th></tr></thead><tbody></tbody>';
     element.parentNode.insertBefore(table, element);
     element.parentNode.insertBefore(button, element);
 
@@ -22,7 +22,7 @@ function insertViewListings(element) {
             listings.forEach(listing=>{
                 var item = items.find(a=>a.id == listing.itemid);
                 var tr = document.createElement("tr");
-                tr.innerHTML = '<td>'+listing.username+'</td><td><div class="item"><span class="icon" style="--x: -'+((listing.itemid % 32) * 40)+'px;--y: -'+(Math.floor(listing.itemid / 32) * 40)+'px;"></span> '+item.name+'</div></td><td>'+listing.stack+'</td>';
+                tr.innerHTML = '<td>'+listing.username+'</td><td><div class="item"><span class="icon" style="--x: -'+((listing.itemid % 32) * 40)+'px;--y: -'+(Math.floor(listing.itemid / 32) * 40)+'px;"></span> '+item.name+'</div></td><td>'+listing.stack+'</td><td>'+listing.price+"</td>";
                 content.appendChild(tr);
             });
             button.disabled = false;
