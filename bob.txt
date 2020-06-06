@@ -1,0 +1,27 @@
+<?php
+			
+				$directory = "listings/active";
+
+    		if (!is_dir($directory)) {
+        	exit("stuff broke, directory path is invalid");
+    		}
+
+    		$files = array();
+    		foreach (scandir($directory) as $file) {
+        	if ($file !== "." && $file !== "..") {
+            $files[] = $file;
+        	}
+    		}
+
+    		//var_dump($files);
+
+				$listings = array();
+				foreach ($files as $filename) {
+					$actualFileName = "listings/active/" . $filename . ".json";
+					var_dump(file_get_contents($actualFileName));
+					$listings[] = json_decode(file_get_contents($actualFileName));
+				}
+
+				//var_dump($listings);
+
+			 ?>

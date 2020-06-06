@@ -1,0 +1,9 @@
+{
+	"offerid":"", (obtained from uniqid())
+	"username":"", 
+	"discord":"",
+	"listingid":"", 
+	"amount":0, 
+	"time":0 (obtained from time())
+	"ip":0 (obtained from $_SERVER["REMOTE_ADDR"])
+}

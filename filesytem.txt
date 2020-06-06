@@ -1,0 +1,3 @@
+/data/          main folder
+/data/listings/ l[listing id].json containing the listing data
+/data/offers/   o[offer id].json containing the offer data
