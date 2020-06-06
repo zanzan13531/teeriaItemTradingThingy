@@ -12,7 +12,7 @@ $jsonThingy["ip"] = $_SERVER["REMOTE_ADDR"];
 
 $actualJsonThingy = json_encode($jsonThingy);
 
-$fileName = "listings/active/l_" . $jsonThingy["listingid"] . ".json";
+$fileName = "listings/l_" . $jsonThingy["listingid"] . ".json";
 
 file_put_contents($fileName, $actualJsonThingy)
 

@@ -7,6 +7,6 @@
 	"prefix":0, 
 	"price":0, 
 	"offers":[],
-	"time":0 (obtained from time())
+	"time":0 (obtained from date_timestamp_get(date_create())),
 	"ip":0 (obtained from $_SERVER["REMOTE_ADDR"])
 }

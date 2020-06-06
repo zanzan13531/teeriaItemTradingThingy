@@ -65,7 +65,7 @@
 
 			<?php
 			
-				$directory = "listings/active";
+				$directory = "listings";
 
     		if (!is_dir($directory)) {
         	exit("stuff broke, directory path is invalid");
@@ -82,7 +82,7 @@
 
 				$listings = array();
 				foreach ($files as $filename) {
-					$actualFileName = "listings/active/" . $filename;
+					$actualFileName = "listings/" . $filename;
 					//var_dump(file_get_contents($actualFileName));
 					//var_dump($actualFileName);
 					$listings[] = json_decode(file_get_contents($actualFileName));
