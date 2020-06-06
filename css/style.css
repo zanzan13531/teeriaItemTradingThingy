@@ -1,0 +1,2 @@
+.page {display: none;}
+.page[state="open"] {display: block;}
