@@ -22,16 +22,18 @@
 			<p>Add listings here:</p>
 
 			<form action="addListing.php" method="post">
+            <input type="hidden" name="verify" value="verify">
+
   			<label for="username">In Game Userame:</label>
-  			<input type="text" id="username" name="username">
+  			<input type="text" name="username">
             <br><br>
 
-  			<label for="itemthingy">Item Name:</label>
+  			<label for="itemthingy">Item:</label>
 			<script>insertItemSearch(document.currentScript);</script>
             <br><br>
 
 			<label for="stack">Stack:</label>
-  			<input type="number" id="stack" name="stack" min="1"><br><br>
+  			<input type="number" name="stack" min="1" value="1"><br><br>
 
 			<!--
 			<label for="prefix">Prefix:</label>
@@ -39,7 +41,7 @@
 			-->
 
 			<label for="price">Price:</label>
-  			<input type="number" id="price" name="price" min="0"><br><br>
+  			<input type="number" name="price" min="0" value="0"><br><br>
 
   			<input type="submit" value="Submit">
 			</form>
