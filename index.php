@@ -43,6 +43,9 @@
 			<label for="price">Price:</label>
   			<input type="number" name="price" min="0" value="0"><br><br>
 
+			<label for="discord">Discord:</label>
+  			<input type="text" name="discord"><br><br>
+
   			<input type="submit" value="Submit">
 			</form>
 		</div>
