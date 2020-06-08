@@ -85,3 +85,8 @@ button, input[type="submit"] {height: 20px;
 .listings td, .listings th {padding: 10px;
   text-align: left;
   border: 1px solid hsl(200 5% 22% / 1);}
+
+.main {
+  margin: auto;
+  text-align: center;
+}
