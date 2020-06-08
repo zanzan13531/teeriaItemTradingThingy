@@ -18,42 +18,46 @@
 
 		<div class="page" id="add">
 			<h1>Teeria Shop Online</h1>
+            <h2>Add Listing</h2>
             <button onclick="showPage('main')">Back</button>
-			<p>Add listings here:</p>
-
 			<form action="addListing.php" method="post">
             <input type="hidden" name="verify" value="verify">
-
-  			<label for="username">In Game Userame:</label>
-  			<input type="text" name="username">
-            <br><br>
-
-  			<label for="itemthingy">Item:</label>
-			<script>insertItemSearch(document.currentScript);</script>
-            <br><br>
-
-			<label for="stack">Stack:</label>
-  			<input type="number" name="stack" min="1" value="1"><br><br>
-
-			<!--
-			<label for="prefix">Prefix:</label>
-  			<input type="text" id="prefix" name="prefix"><br><br>
-			-->
-
-			<label for="price">Price:</label>
-  			<input type="number" name="price" min="0" value="0"><br><br>
-
-			<label for="discord">Discord:</label>
-  			<input type="text" name="discord"><br><br>
-
+  			<table>
+                <tr>
+                    <td><label for="username">In Game Userame:</label></td>
+                    <td><input type="text" name="username" required></td>
+                </tr>
+      			<tr>
+                    <td><label for="itemthingy">Item:</label></td>
+        			<td><script>insertItemSearch(document.currentScript);</script></td>
+                </tr>
+    			<tr>
+                    <td><label for="stack">Stack:</label></td>
+          			<td><input type="number" name="stack" min="1" value="1" required></td>
+                </tr>
+    			<!--
+    			<tr>
+                    <td><label for="prefix">Prefix:</label></td>
+                    <td><input type="text" id="prefix" name="prefix" required></td>
+                </tr>
+    			-->
+    			<tr>
+                    <td><label for="price">Price:</label></td>
+          			<td><input type="number" name="price" min="0" value="0" required></td>
+                </tr>
+    			<tr>
+                    <td><label for="discord">Discord:</label></td>
+          			<td><input type="text" name="discord" required></td>
+                </tr>
+            </table>
   			<input type="submit" value="Submit">
 			</form>
 		</div>
 
 		<div class="page" id="list">
 			<h1>Teeria Shop Online</h1>
+            <h2>Listings</h2>
             <button onclick="showPage('main')">Back</button>
-			<p>View listings here:</p>
 			<script>insertViewListings(document.currentScript);</script>
 		</div>
   </body>

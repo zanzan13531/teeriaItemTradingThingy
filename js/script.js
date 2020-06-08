@@ -7,8 +7,8 @@ function insertViewListings(element) {
     var table = document.createElement("table");
     table.classList.add("listings");
     table.innerHTML = '<thead><tr><th>Username</th><th>Item</th><th>Stack</th><th>Price</th><th>Discord</th></tr></thead><tbody></tbody>';
-    element.parentNode.insertBefore(table, element);
     element.parentNode.insertBefore(button, element);
+    element.parentNode.insertBefore(table, element);
 
     var content = table.querySelector("tbody");
     var items = [];
@@ -42,10 +42,12 @@ function insertItemSearch(element) {
 	itemid.value = 0;
 	var input = document.createElement("input");
 	input.type = "text";
+    input.placeholder = "Search...";
 	var list = document.createElement("div");
 	list.classList.add("itemsearch-list");
 	var item = document.createElement("div");
 	item.classList.add("itemsearch-item");
+    item.innerHTML = '<div class="item"><span class="icon" style="--x: 0px;--y:0px;"></span> ItemName.None</div>';
 	var container = document.createElement("div");
 	container.classList.add("itemsearch");
 	container.appendChild(input);
@@ -81,7 +83,7 @@ function insertItemSearch(element) {
 			}
 			for(let i = 0; i < size; i++) {
 				var e = document.createElement("div");
-				e.innerHTML = '<div class="item"><span class="icon" style="--x: -'+((result[i].id % 32) * 40)+'px;--y: -'+(Math.floor(result[i].id / 32) * 40)+'px;"></span> ' + result[i].name+'</div>';
+				e.innerHTML = '<div class="item"><span class="icon" style="--x: -'+((result[i].id % 32) * 40)+'px;--y: -'+(Math.floor(result[i].id / 32) * 40)+'px;"></span> '+result[i].name+'</div>';
 				e.setAttribute("data-id", result[i].id);
 				e.addEventListener("click", click);
 				list.appendChild(e);
@@ -108,6 +110,7 @@ function fetchItemData() {
 }
 
 function showPage(name) {
+    location.hash = name;
     Array.from(document.querySelectorAll(".page")).forEach(page=>{
         if(page.id == name) {
             page.setAttribute("state", "open");
@@ -116,6 +119,13 @@ function showPage(name) {
         }
     });
 }
+
+window.addEventListener("load", ()=>{
+    var name = location.hash.replace("#", "");
+    if(name.length > 0 && document.querySelector("#"+name)) {
+        showPage(name);
+    }
+});
 
 /*
 var vals = ['item1','item2','item3','etc.'];
