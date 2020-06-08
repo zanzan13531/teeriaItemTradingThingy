@@ -86,7 +86,7 @@ button, input[type="submit"] {height: 20px;
   text-align: left;
   border: 1px solid hsl(200 5% 22% / 1);}
 
-.main {
+#main {
   margin: auto;
   text-align: center;
 }
