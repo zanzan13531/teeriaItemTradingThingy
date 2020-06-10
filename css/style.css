@@ -30,6 +30,7 @@ table {margin-left: auto !important;
 .page[state="open"] {display: block;}
 
 .item {display: inline-block;
+  white-space: nowrap;
   line-height: 40px;}
 .item .icon {display: inline-block;
   width: 40px;
