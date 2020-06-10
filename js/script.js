@@ -1,3 +1,9 @@
+function deleteListing(id, row) {
+    fetch("deleteListing.php?id="+id);
+    var r = row.parentNode.parentNode;
+    r.parentNode.removeChild(r);
+}
+
 function insertViewListings(element) {
     var button = document.createElement("button");
     button.innerHTML = "Refresh";
@@ -6,7 +12,7 @@ function insertViewListings(element) {
     });
     var table = document.createElement("table");
     table.classList.add("listings");
-    table.innerHTML = '<thead><tr><th>Username</th><th>Item</th><th>Stack</th><th>Price</th><th>Discord</th></tr></thead><tbody></tbody>';
+    table.innerHTML = '<thead><tr><th>Username</th><th>Item<input type="text" placeholder="Filter..." oninput="filterRows(this)" class="filter"></th><th>Stack<button onclick="sortRows(this)" class="sort" sort="2"><span></span><span></span></button></th><th>Price<button onclick="sortRows(this)" class="sort" sort="2"><span></span><span></span></button></th><th>Price Each<button onclick="sortRows(this)" class="sort" sort="2"><span></span><span></span></button></th><th>Discord</th><th>Actions</th></tr></thead><tbody></tbody>';
     element.parentNode.insertBefore(button, element);
     element.parentNode.insertBefore(table, element);
 
@@ -17,12 +23,13 @@ function insertViewListings(element) {
             return;
         }
         button.disabled = true;
-        fetch("viewListings.php").then(r=>r.json()).then(listings=>{
+        fetch("viewListings.php").then(r=>r.json()).then(data=>{
             content.innerHTML = "";
-            listings.forEach(listing=>{
+            data.listings.forEach((listing, i)=>{
                 var item = items.find(a=>a.id == listing.itemid);
                 var tr = document.createElement("tr");
-                tr.innerHTML = '<td>'+listing.username+'</td><td><div class="item"><span class="icon" style="--x: -'+((listing.itemid % 32) * 40)+'px;--y: -'+(Math.floor(listing.itemid / 32) * 40)+'px;"></span> '+item.name+'</div></td><td>'+listing.stack+'</td><td>'+listing.price+"</td><td>"+listing.discord+"</td>";
+                tr.setAttribute("index", i);
+                tr.innerHTML = '<td>'+listing.username+'</td><td><div class="item"><span class="icon" style="--x: -'+((listing.itemid % 32) * 40)+'px;--y: -'+(Math.floor(listing.itemid / 32) * 40)+'px;"></span> '+item.name+'</div></td><td>'+listing.stack+'</td><td>'+listing.price+'</td><td>'+Math.round(listing.price/(listing.stack > 0 ? listing.stack : 1))+"</td><td>"+listing.discord+"</td><td>"+(listing.ip == data.user ? '<button onclick="deleteListing(\''+listing.listingid+'\', this)">Delete</button>' : "")+"</td>";
                 content.appendChild(tr);
             });
             button.disabled = false;
@@ -32,6 +39,49 @@ function insertViewListings(element) {
 	fetchItemData().then(data=>{
         items = data;
         render();
+    });
+}
+
+function filterRows(e) {
+    var text = e.value.trim().toLowerCase();
+    var index = Array.from(e.parentNode.parentNode.children).indexOf(e.parentNode);
+    var rows = Array.from(e.parentNode.parentNode.parentNode.parentNode.querySelector("tbody").children);
+    if(text.length == 0) {
+        rows.forEach(row=>{
+            row.removeAttribute("hidden");
+        });
+    }
+    rows.forEach(row=>{
+        if(!row.children[index].innerText.toLowerCase().includes(text)) {
+            row.setAttribute("hidden", "");
+        }else {
+            row.removeAttribute("hidden");
+        }
+    });
+}
+
+function sortRows(e) {
+    var sorts = ["up", "down", "none"];
+    var sort = sorts[0];
+    if(e.hasAttribute("sort")) {
+        sort = sorts[(e.getAttribute("sort")*1+1) % sorts.length];
+    }
+    e.setAttribute("sort", sorts.indexOf(sort));
+    var index = Array.from(e.parentNode.parentNode.children).indexOf(e.parentNode);
+    var body = e.parentNode.parentNode.parentNode.parentNode.querySelector("tbody");
+    var rows = Array.from(body.children);
+    body.innerHTML = "";
+    rows = rows.sort((a, b)=>{
+        if(sort == "up") {
+            return a.children[index].innerText*1 - b.children[index].innerText*1;
+        }else if(sort == "down") {
+            return b.children[index].innerText*1 - a.children[index].innerText*1;
+        }else {
+            return a.getAttribute("index")*1 - b.getAttribute("index")*1;
+        }
+    });
+    rows.forEach(row=>{
+        body.appendChild(row);
     });
 }
 

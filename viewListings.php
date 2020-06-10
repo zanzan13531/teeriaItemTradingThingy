@@ -3,5 +3,11 @@
     foreach(glob("listings/*.json") as $file) {
         $listings[] = json_decode(file_get_contents($file), true);
     }
-    echo json_encode($listings);
+    usort($listings, function ($a, $b) {
+        return $b["time"] - $a["time"];
+    });
+    echo json_encode([
+        "user"=>$_SERVER["REMOTE_ADDR"],
+        "listings"=>$listings
+    ]);
 ?>

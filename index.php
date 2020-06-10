@@ -24,11 +24,15 @@
             <input type="hidden" name="verify" value="verify">
   			<table>
                 <tr>
-                    <td><label for="username">In Game Userame:</label></td>
+                    <td><label for="username">In Game Userame*:</label></td>
                     <td><input type="text" name="username" required></td>
                 </tr>
+                <tr>
+                    <td><label for="discord">Discord:</label></td>
+          			<td><input type="text" name="discord"></td>
+                </tr>
       			<tr>
-                    <td><label for="itemthingy">Item:</label></td>
+                    <td><label for="itemthingy">Item*:</label></td>
         			<td><script>insertItemSearch(document.currentScript);</script></td>
                 </tr>
     			<tr>
@@ -42,12 +46,8 @@
                 </tr>
     			-->
     			<tr>
-                    <td><label for="price">Price:</label></td>
+                    <td><label for="price">Price*:</label></td>
           			<td><input type="number" name="price" min="0" value="0" required></td>
-                </tr>
-    			<tr>
-                    <td><label for="discord">Discord:</label></td>
-          			<td><input type="text" name="discord" required></td>
                 </tr>
             </table>
   			<input type="submit" value="Submit">

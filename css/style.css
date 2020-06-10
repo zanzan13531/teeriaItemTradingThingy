@@ -18,10 +18,14 @@ h2 {display: block;
   height: 30px;
   margin: 0 0 20px 0;
   line-height: 30px;}
+table {margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: left;}
 
 .page {display: none;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
+  text-align: center;
   overflow: hidden;}
 .page[state="open"] {display: block;}
 
@@ -35,6 +39,60 @@ h2 {display: block;
   background-position: var(--x) var(--y);
   float: left;
   transform: scale(1);}
+
+button.sort {display: block;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  float: right;
+  cursor: pointer;}
+button.sort span {display: block;
+  position: absolute;
+  pointer-events: none;}
+button.sort[sort="0"] span:nth-child(1) {width: 10px;
+  height: 10px;
+  left: 4px;
+  top: 4px;
+  border-left: 2px solid #eee;
+  border-top: 2px solid #eee;
+  transform: rotate(45deg);}
+button.sort[sort="0"] span:nth-child(2) {width: 2px;
+  height: 14px;
+  top: 3px;
+  left: 9px;
+  background: #eee;}
+button.sort[sort="1"] span:nth-child(1) {width: 10px;
+  height: 10px;
+  left: 4px;
+  top: 4px;
+  border-left: 2px solid #eee;
+  border-top: 2px solid #eee;
+  transform: rotate(-135deg);}
+button.sort[sort="1"] span:nth-child(2) {width: 2px;
+  height: 14px;
+  top: 3px;
+  left: 9px;
+  background: #eee;}
+button.sort[sort="2"] span:nth-child(1) {width: 20px;
+  height: 2px;
+  top: 6px;
+  left: 0;
+  background: #eee;}
+button.sort[sort="2"] span:nth-child(2) {width: 20px;
+  height: 2px;
+  top: 13px;
+  left: 0;
+  background: #eee;}
+
+input[type="text"].filter {height: 20px;
+  margin: -7px 0;
+  background: transparent;
+  float: right;}
 
 input[type="text"], input[type="number"] {height: 20px;
   padding: 5px;
@@ -86,10 +144,4 @@ button, input[type="submit"] {height: 20px;
   text-align: left;
   border: 1px solid hsl(200 5% 22% / 1);}
 
-#main {
-  text-align: center;
-}
-
-#add {
-  text-align: center;
-}
+tr[hidden] {display: none;}
